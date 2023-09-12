@@ -104,19 +104,19 @@
               <h2 class="Authors-title" id="a">А
               </h2>
               <div class="Authors-letter">
-                <div class="Authors-item"><a href="/authors/slug.html">Абгарян Наринэ</a>
+                <div class="Authors-item" th:each="author : ${authorData}" th:if="${author.getName().charAt(0)}=='А'"><a href="/authors/slug.html" th:text="${author.name}">Абгарян Наринэ</a>
                 </div>
               </div>
               <h2 class="Authors-title" id="b">Б
               </h2>
               <div class="Authors-letter">
-                <div class="Authors-item" th:each="author : ${authorData}"><a href="/authors/slug.html" th:text="${author.name}">Байбаков Иван</a>
+                <div class="Authors-item" th:each="author : ${authorData}" th:if="${author.getName().charAt(0)}=='Б'"><a href="/authors/slug.html" th:text="${author.name}">Байбаков Иван</a>
                 </div>
               </div>
               <h2 class="Authors-title" id="v">В
               </h2>
               <div class="Authors-letter">
-                <div class="Authors-item"><a href="/authors/slug.html">Вайн Барбара</a>
+                <div class="Authors-item" th:each="author : ${authorData}" th:if="${author.getName().charAt(0)}=='В'"><a href="/authors/slug.html" th:text="${author.name}">Вайн Барбара</a>
                 </div>
               </div>
               <h2 class="Authors-title" id="g">Г
