@@ -10,8 +10,8 @@ price VARCHAR(250) DEFAULT NULL
 
 DROP TABLE IF EXISTS authors;
 
-CREATE TABLE authors(
-id INT AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(250) NOT NULL,
-old INT
+create table authors (
+id INT,
+first_name VARCHAR(50),
+last_name VARCHAR(50)
 );

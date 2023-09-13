@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("bookshop/genres")
 public class GenresPageController {
 
-    @GetMapping("/authors")
-    public String toAuthors(){
-        Logger.getLogger(GenresPageController.class.getName()).info("redirect to authors page (from genres)");
-        return "authors/index";
+    @GetMapping("/genres")
+    public String authorsPage(){
+
+        return "/genres/index";
     }
 }
