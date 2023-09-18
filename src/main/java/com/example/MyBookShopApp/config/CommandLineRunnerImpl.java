@@ -18,6 +18,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
     EntityManagerFactory entityManagerFactory;
 
+
     @Autowired
     public CommandLineRunnerImpl(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
