@@ -24,13 +24,25 @@ public class BookService {
         List<Book> books = jdbcTemplate.query("SELECT * FROM books",(ResultSet rs, int rowNum)->{
            Book book = new Book();
            book.setId(rs.getInt("id"));
-           book.setAuthor(rs.getString("author"));
+           book.setAuthor(getAuthorById(rs.getInt("author_id")));
            book.setTitle(rs.getString("title"));
-           book.setPriceOld(rs.getString("priceOld"));
+           book.setPriceOld(rs.getString("price_old"));
            book.setPrice(rs.getString("price"));
            return book;
         });
 
         return new ArrayList<>(books);
+    }
+
+    private String getAuthorById(int author_id) {
+        List<Authors> authors = jdbcTemplate.query("SELECT * FROM authors WHERE authors.id=" + author_id,(ResultSet rs, int rowNum)->
+        {
+           Authors authors1 = new Authors();
+           authors1.setId(rs.getInt("id"));
+           authors1.setFirstName(rs.getString("first_name"));
+           authors1.setLastName(rs.getString("last_name"));
+           return authors1;
+        });
+        return authors.get(0).toString();
     }
 }
