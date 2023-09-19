@@ -1,28 +1,27 @@
 package com.example.MyBookShopApp.config;
 
 import com.example.MyBookShopApp.data.TestEntity;
-import org.aspectj.weaver.ast.Test;
-import org.hibernate.HibernateError;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
-import javax.persistence.EntityManagerFactory;
 import java.util.logging.Logger;
+import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
 public class CommandLineRunnerImpl implements CommandLineRunner {
 
+    @Autowired
     EntityManagerFactory entityManagerFactory;
 
-
-    @Autowired
-    public CommandLineRunnerImpl(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
-    }
 
     @Override
     public void run(String... args) throws Exception {
