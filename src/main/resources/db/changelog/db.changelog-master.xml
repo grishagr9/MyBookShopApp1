@@ -8,5 +8,4 @@
 
     <include file="db/changelog/2023-09-22--NUMBER_OF_MIGRATION-01.xml"/>
 
-
 </databaseChangeLog>
