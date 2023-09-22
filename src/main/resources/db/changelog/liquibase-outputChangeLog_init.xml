@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet author="Grisha (generated)" id="1695391930522-1">
+    <changeSet author="Grisha (generated)" id="1695393398864-1">
         <createSequence sequenceName="authors_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-2">
+    <changeSet author="Grisha (generated)" id="1695393398864-2">
         <createSequence sequenceName="balance_transaction_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-3">
+    <changeSet author="Grisha (generated)" id="1695393398864-3">
         <createSequence sequenceName="book2author_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-4">
+    <changeSet author="Grisha (generated)" id="1695393398864-4">
         <createSequence sequenceName="book2genre_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-5">
+    <changeSet author="Grisha (generated)" id="1695393398864-5">
         <createSequence sequenceName="book2user_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-6">
+    <changeSet author="Grisha (generated)" id="1695393398864-6">
         <createSequence sequenceName="book2user_type_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-7">
+    <changeSet author="Grisha (generated)" id="1695393398864-7">
         <createSequence sequenceName="book_file_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-8">
+    <changeSet author="Grisha (generated)" id="1695393398864-8">
         <createSequence sequenceName="book_file_type_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-9">
+    <changeSet author="Grisha (generated)" id="1695393398864-9">
         <createSequence sequenceName="book_review_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-10">
+    <changeSet author="Grisha (generated)" id="1695393398864-10">
         <createSequence sequenceName="book_review_like_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-11">
+    <changeSet author="Grisha (generated)" id="1695393398864-11">
         <createSequence sequenceName="books_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-12">
+    <changeSet author="Grisha (generated)" id="1695393398864-12">
         <createSequence sequenceName="books_id_seq1"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-13">
+    <changeSet author="Grisha (generated)" id="1695393398864-13">
         <createSequence sequenceName="document_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-14">
+    <changeSet author="Grisha (generated)" id="1695393398864-14">
         <createSequence sequenceName="faq_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-15">
+    <changeSet author="Grisha (generated)" id="1695393398864-15">
         <createSequence sequenceName="file_download_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-16">
+    <changeSet author="Grisha (generated)" id="1695393398864-16">
         <createSequence sequenceName="genre_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-17">
+    <changeSet author="Grisha (generated)" id="1695393398864-17">
         <createSequence sequenceName="message_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-18">
+    <changeSet author="Grisha (generated)" id="1695393398864-18">
         <createSequence sequenceName="test_entities_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-19">
+    <changeSet author="Grisha (generated)" id="1695393398864-19">
         <createSequence sequenceName="user_contact_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-20">
+    <changeSet author="Grisha (generated)" id="1695393398864-20">
         <createSequence sequenceName="users_id_seq"/>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-21">
+    <changeSet author="Grisha (generated)" id="1695393398864-21">
         <createTable tableName="authors">
             <column autoIncrement="true" name="id" type="INT">
                 <constraints primaryKey="true" primaryKeyName="authors_pkey"/>
@@ -73,7 +73,7 @@
             <column name="slug" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-22">
+    <changeSet author="Grisha (generated)" id="1695393398864-22">
         <createTable tableName="balance_transaction">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="balance_transaction_pkey"/>
@@ -84,7 +84,7 @@
             <column name="description" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="time" type="TIMESTAMP(29) WITHOUT TIME ZONE">
+            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
             <column name="user_id" type="INT">
@@ -95,7 +95,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-23">
+    <changeSet author="Grisha (generated)" id="1695393398864-23">
         <createTable tableName="book2author">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="book2author_pkey"/>
@@ -111,7 +111,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-24">
+    <changeSet author="Grisha (generated)" id="1695393398864-24">
         <createTable tableName="book2genre">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="book2genre_pkey"/>
@@ -124,7 +124,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-25">
+    <changeSet author="Grisha (generated)" id="1695393398864-25">
         <createTable tableName="book2user">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="book2user_pkey"/>
@@ -132,7 +132,7 @@
             <column name="book_id" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="time" type="TIMESTAMP(29) WITHOUT TIME ZONE">
+            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
             <column name="type_id" type="INT">
@@ -143,7 +143,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-26">
+    <changeSet author="Grisha (generated)" id="1695393398864-26">
         <createTable tableName="book2user_type">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="book2user_type_pkey"/>
@@ -156,7 +156,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-27">
+    <changeSet author="Grisha (generated)" id="1695393398864-27">
         <createTable tableName="book_file">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="book_file_pkey"/>
@@ -172,7 +172,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-28">
+    <changeSet author="Grisha (generated)" id="1695393398864-28">
         <createTable tableName="book_file_type">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="book_file_type_pkey"/>
@@ -183,7 +183,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-29">
+    <changeSet author="Grisha (generated)" id="1695393398864-29">
         <createTable tableName="book_review">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="book_review_pkey"/>
@@ -194,7 +194,7 @@
             <column name="text" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="time" type="TIMESTAMP(29) WITHOUT TIME ZONE">
+            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
             <column name="user_id" type="INT">
@@ -202,7 +202,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-30">
+    <changeSet author="Grisha (generated)" id="1695393398864-30">
         <createTable tableName="book_review_like">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="book_review_like_pkey"/>
@@ -210,7 +210,7 @@
             <column name="review_id" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="time" type="TIMESTAMP(29) WITHOUT TIME ZONE">
+            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
             <column name="user_id" type="INT">
@@ -221,7 +221,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-31">
+    <changeSet author="Grisha (generated)" id="1695393398864-31">
         <createTable tableName="books">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="books_pkey"/>
@@ -232,7 +232,7 @@
             </column>
             <column name="is_bestseller" type="INT"/>
             <column name="price" type="INT"/>
-            <column name="pub_date" type="TIMESTAMP(29) WITHOUT TIME ZONE"/>
+            <column name="pub_date" type="timestamp(6) WITHOUT TIME ZONE"/>
             <column name="slug" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
@@ -244,7 +244,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-32">
+    <changeSet author="Grisha (generated)" id="1695393398864-32">
         <createTable tableName="document">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="document_pkey"/>
@@ -263,7 +263,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-33">
+    <changeSet author="Grisha (generated)" id="1695393398864-33">
         <createTable tableName="faq">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="faq_pkey"/>
@@ -279,7 +279,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-34">
+    <changeSet author="Grisha (generated)" id="1695393398864-34">
         <createTable tableName="file_download">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="file_download_pkey"/>
@@ -295,7 +295,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-35">
+    <changeSet author="Grisha (generated)" id="1695393398864-35">
         <createTable tableName="genre">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="genre_pkey"/>
@@ -309,7 +309,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-36">
+    <changeSet author="Grisha (generated)" id="1695393398864-36">
         <createTable tableName="message">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="message_pkey"/>
@@ -322,13 +322,13 @@
             <column name="text" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="time" type="TIMESTAMP(29) WITHOUT TIME ZONE">
+            <column name="time" type="timestamp(6) WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
             <column name="user_id" type="INT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-37">
+    <changeSet author="Grisha (generated)" id="1695393398864-37">
         <createTable tableName="test_entities">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="test_entities_pkey"/>
@@ -336,7 +336,7 @@
             <column name="data" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-38">
+    <changeSet author="Grisha (generated)" id="1695393398864-38">
         <createTable tableName="user_contact">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="user_contact_pkey"/>
@@ -347,7 +347,7 @@
             <column name="code" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="code_time" type="TIMESTAMP(29) WITHOUT TIME ZONE"/>
+            <column name="code_time" type="timestamp(6) WITHOUT TIME ZONE"/>
             <column name="code_trails" type="INT"/>
             <column name="contact" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -358,7 +358,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Grisha (generated)" id="1695391930522-39">
+    <changeSet author="Grisha (generated)" id="1695393398864-39">
         <createTable tableName="users">
             <column autoIncrement="true" name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="users_pkey"/>
@@ -372,7 +372,7 @@
             <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="reg_time" type="TIMESTAMP(29) WITHOUT TIME ZONE">
+            <column name="reg_time" type="timestamp(6) WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
         </createTable>
