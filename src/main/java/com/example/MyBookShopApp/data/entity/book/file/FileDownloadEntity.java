@@ -6,11 +6,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
-
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Entity
 @Table(name = "file_download")
+@Getter
+@Setter
 public class FileDownloadEntity {
 
     @Id
@@ -26,35 +29,5 @@ public class FileDownloadEntity {
     @Column(columnDefinition = "INT NOT NULL DEFAULT 1")
     private int count;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
 }

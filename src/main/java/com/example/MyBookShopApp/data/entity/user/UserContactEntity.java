@@ -8,11 +8,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user_contact")
+@Getter
+@Setter
 public class UserContactEntity {
 
     @Id
@@ -39,67 +43,5 @@ public class UserContactEntity {
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     private String contact;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public ContactType getType() {
-        return type;
-    }
-
-    public void setType(ContactType type) {
-        this.type = type;
-    }
-
-    public short getApproved() {
-        return approved;
-    }
-
-    public void setApproved(short approved) {
-        this.approved = approved;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public int getCodeTrails() {
-        return codeTrails;
-    }
-
-    public void setCodeTrails(int codeTrails) {
-        this.codeTrails = codeTrails;
-    }
-
-    public LocalDateTime getCodeTime() {
-        return codeTime;
-    }
-
-    public void setCodeTime(LocalDateTime codeTime) {
-        this.codeTime = codeTime;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
 }

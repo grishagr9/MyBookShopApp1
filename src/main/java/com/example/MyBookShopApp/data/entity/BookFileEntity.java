@@ -1,9 +1,13 @@
 package com.example.MyBookShopApp.data.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "book_file")
+@Getter
+@Setter
 public class BookFileEntity {
 
     @Id
