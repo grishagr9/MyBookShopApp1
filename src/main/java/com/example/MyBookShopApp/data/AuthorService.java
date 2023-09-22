@@ -11,23 +11,16 @@ import java.util.stream.Collectors;
 
 @Service
 public class AuthorService {
-    private JdbcTemplate jdbcTemplate;
+
+    private AuthorRepository authorRepository;
 
     @Autowired
-    public AuthorService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public AuthorService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
     }
 
     public Map<String, List<Authors>> getAuthorsMap() {
-        List<Authors> authors = jdbcTemplate.query("SELECT * FROM authors",(ResultSet rs, int rowNum)->{
-            Authors author = new Authors();
-            author.setId(rs.getInt("id"));
-            author.setFirstName(rs.getString("first_name"));
-            author.setLastName(rs.getString("last_name"));
-
-            return author;
-        });
-
-        return authors.stream().collect(Collectors.groupingBy((Authors a)->{return a.getLastName().substring(0,1);}));
+        List<Authors> authors = authorRepository.findAll();
+        return authors.stream().collect(Collectors.groupingBy((Authors a)->{return a.getName().substring(0,1);}));
     }
 }

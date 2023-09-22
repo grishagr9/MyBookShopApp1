@@ -14,12 +14,14 @@ import java.util.logging.Logger;
 @Controller
 public class MainPageController {
 
+
     private final BookService bookService;
 
-    @Autowired
+
     public MainPageController(BookService bookService) {
         this.bookService = bookService;
     }
+
 
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks(){
