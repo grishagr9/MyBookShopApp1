@@ -1,7 +1,7 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.services.AuthorService;
-import com.example.MyBookShopApp.data.entity.Authors;
+import com.example.MyBookShopApp.services.AuthorService;
+import com.example.MyBookShopApp.entity.Authors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
