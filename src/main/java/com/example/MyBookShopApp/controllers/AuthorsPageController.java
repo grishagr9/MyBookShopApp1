@@ -2,8 +2,8 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.services.AuthorService;
 import com.example.MyBookShopApp.entity.Authors;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@Api(description = "authors data")
+
 public class AuthorsPageController {
 
     private final AuthorService authorService;
@@ -35,7 +35,8 @@ public class AuthorsPageController {
     }
 
 
-    @ApiOperation("method to get map of authors")
+
+    @Operation(summary = "Get authors by id")
     @GetMapping("/api/authors")
     @ResponseBody
     public Map<String, List<Authors>> authors(){
