@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -68,5 +69,11 @@ public class BookService {
         return bookRepository.findBooksByTitleContaining(searchWord, nextPage);
     }
 
+    public Page<Book> getPageOfRecentBooksResult(Integer offset, Integer limit, Date fromDate, Date toDate){
+        Pageable nextPage = PageRequest.of(offset, limit);
+        //return bookRepository.findAllByOrderByPubDateDesc(nextPage);
+       //return bookRepository.findAllByPubDateBetweenAndOrderByPubDateDesc(fromDate, toDate, nextPage);
+        return bookRepository.findAllByPubDateBetween(fromDate,toDate,nextPage);
+    }
 
 }
