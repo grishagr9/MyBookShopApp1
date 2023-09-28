@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 @Controller
 @RequiredArgsConstructor
 public class MainPageController {
+
     private final BookService bookService;
 
     @ModelAttribute("recommendedBooks")

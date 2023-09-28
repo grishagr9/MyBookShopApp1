@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -50,10 +51,10 @@ public class RecentPageController {
     public String recentPage(@RequestParam(value = "fromDate", required = false) DateRecentDto fromDate,
                              @PathVariable(value = "toDate", required = false) DateRecentDto toDate,
                              Model model) {
-        model.addAttribute("fromDate", fromDate);
-        model.addAttribute("toDate", toDate);
+        model.addAttribute("fromDate", Objects.requireNonNullElseGet(fromDate, () -> new DateRecentDto(new Date())));
+        model.addAttribute("toDate", Objects.requireNonNullElseGet(toDate, () -> new DateRecentDto(new Date())));
 
-        if (fromDate != null) {
+        if (fromDate != null ) {
             model.addAttribute("recentBooks",
                     bookService.getPageOfRecentBooksResult(0, 5, fromDate.getDate(), toDate.getDate()).getContent());
         } else {

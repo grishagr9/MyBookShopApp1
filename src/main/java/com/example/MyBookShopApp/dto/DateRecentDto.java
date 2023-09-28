@@ -10,4 +10,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class DateRecentDto {
     private Date date;
+
+    public DateRecentDto(Date date) {
+        this.date = date;
+    }
 }
