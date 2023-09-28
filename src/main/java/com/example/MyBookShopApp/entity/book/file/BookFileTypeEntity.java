@@ -8,25 +8,30 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 
-@Entity
-@Table(name = "book_file_type")
 @Getter
 @Setter
+@Table(name = "book_file_type")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@NoArgsConstructor
+@Entity
 public class BookFileTypeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String name;
+    String name;
 
     @Column(columnDefinition = "TEXT")
-    private String description;
-
-
+    String description;
 }

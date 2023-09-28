@@ -4,6 +4,8 @@ import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.dto.SearchWordDto;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.services.BookService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,16 +15,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
+@RequiredArgsConstructor
 public class MainPageController {
-
-
     private final BookService bookService;
-
-
-    public MainPageController(BookService bookService) {
-        this.bookService = bookService;
-    }
-
 
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks(){

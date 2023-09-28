@@ -6,23 +6,30 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 
-@Entity
-@Table(name = "book2genre")
 @Getter
 @Setter
+@Table(name = "book2genre")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@NoArgsConstructor
+@Entity
 public class Book2GenreEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
 
     @Column(columnDefinition = "INT NOT NULL")
-    private int bookId;
+    int bookId;
 
     @Column(columnDefinition = "INT NOT NULL")
-    private int genreId;
+    int genreId;
 }

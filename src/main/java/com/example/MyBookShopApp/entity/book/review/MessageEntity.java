@@ -6,39 +6,43 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "message")
 @Getter
 @Setter
+@Table(name = "message")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@NoArgsConstructor
+@Entity
 public class MessageEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
 
     //@Column(columnDefinition = "TIMESTAMP NOT NULL")
-    private LocalDateTime time;
+    LocalDateTime time;
 
     @Column(columnDefinition = "INT")
-    private int userId;
+    int userId;
 
     @Column(columnDefinition = "VARCHAR(255)")
-    private String email;
+    String email;
 
     @Column(columnDefinition = "VARCHAR(255)")
-    private String name;
+    String name;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String subject;
+    String subject;
 
     //@Column(columnDefinition = "TEXT NOT NULL")
-    private String text;
-
-
-
+    String text;
 }

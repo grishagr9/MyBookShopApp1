@@ -1,23 +1,30 @@
 package com.example.MyBookShopApp.entity;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
-@Entity
-@Table(name = "book_file")
 @Getter
 @Setter
+@Table(name = "book_file")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@NoArgsConstructor
+@Entity
 public class BookFileEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    Integer id;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String hash;
+    String hash;
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String path;
+    String path;
     @Column(columnDefinition = "INT NOT NULL")
-    private Integer typeId;
+    Integer typeId;
 }

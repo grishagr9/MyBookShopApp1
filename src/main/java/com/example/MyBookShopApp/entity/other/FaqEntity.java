@@ -6,28 +6,33 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 
-@Entity
-@Table(name = "faq")
 @Getter
 @Setter
+@Table(name = "faq")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@NoArgsConstructor
+@Entity
 public class FaqEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
 
     @Column(columnDefinition = "INT NOT NULL  DEFAULT 0")
-    private int sortIndex;
+    int sortIndex;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String question;
+    String question;
 
     //@Column(columnDefinition = "TEXT NOT NULL")
-    private String answer;
-
-
+    String answer;
 }

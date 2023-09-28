@@ -6,32 +6,37 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "book_review_like")
 @Getter
 @Setter
+@Table(name = "book_review_like")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@NoArgsConstructor
+@Entity
 public class BookReviewLikeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
 
     @Column(columnDefinition = "INT NOT NULL")
-    private int reviewId;
+    int reviewId;
 
     @Column(columnDefinition = "INT NOT NULL")
-    private int userId;
+    int userId;
 
    // @Column(columnDefinition = "TIMESTAMP NOT NULL")
-    private LocalDateTime time;
+    LocalDateTime time;
 
     //@Column(columnDefinition = "SMALLINT NOT NULL")
-    private short value;
-
-
+    short value;
 }

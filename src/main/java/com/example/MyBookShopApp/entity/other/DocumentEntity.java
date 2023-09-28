@@ -6,31 +6,36 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 
-@Entity
-@Table(name = "document")
 @Getter
 @Setter
+@Table(name = "document")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@NoArgsConstructor
+@Entity
 public class DocumentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
 
     @Column(columnDefinition = "INT NOT NULL  DEFAULT 0")
-    private int sortIndex;
+    int sortIndex;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String slug;
+    String slug;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String title;
+    String title;
 
    // @Column(columnDefinition = "TEXT NOT NULL")
-    private String text;
-
-
+    String text;
 }

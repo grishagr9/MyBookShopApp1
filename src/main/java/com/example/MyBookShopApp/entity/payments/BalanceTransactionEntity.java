@@ -6,32 +6,38 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "balance_transaction")
 @Getter
 @Setter
+@Table(name = "balance_transaction")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@NoArgsConstructor
+@Entity
 public class BalanceTransactionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
 
     @Column(columnDefinition = "INT NOT NULL")
-    private int userId;
+    int userId;
 
-    private LocalDateTime time;
+    LocalDateTime time;
 
     @Column(columnDefinition = "INT NOT NULL DEFAULT 0")
-    private int value;
+    int value;
 
     @Column(columnDefinition = "INT NOT NULL")
-    private int bookId;
+    int bookId;
 
-
-    private String description;
+    String description;
 }

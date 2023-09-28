@@ -3,6 +3,7 @@ package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.services.BookService;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +15,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 //@Api(description = "book data api")
 public class BooksRestApiController {
 
     private final BookService bookService;
-
-    @Autowired
-    public BooksRestApiController(BookService bookService) {
-        this.bookService = bookService;
-    }
 
     @GetMapping("/books/by-title")
     //@ApiOperation("Operation to get book by title")

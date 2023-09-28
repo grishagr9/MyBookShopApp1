@@ -6,31 +6,38 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "users")
 @Getter
 @Setter
+@Table(name = "users")
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@NoArgsConstructor
+@Entity
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String hash;
+    String hash;
 
     //@Column(columnDefinition = "TIMESTAMP NOT NULL")
-    private LocalDateTime regTime;
+    LocalDateTime regTime;
 
     @Column(columnDefinition = "INT NOT NULL  DEFAULT 0")
-    private int balance;
+    int balance;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String name;
+    String name;
 
 }
