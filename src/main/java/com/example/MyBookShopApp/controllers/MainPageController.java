@@ -2,8 +2,10 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.dto.SearchWordDto;
+import com.example.MyBookShopApp.dto.TagsDto;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.services.BookService;
+import com.example.MyBookShopApp.services.TagService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ import java.util.logging.Logger;
 public class MainPageController {
 
     private final BookService bookService;
+
+    private final TagService tagService;
 
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks(){
@@ -81,7 +85,15 @@ public class MainPageController {
                                           @PathVariable(value = "searchWord",required = false) SearchWordDto searchWordDto){
         return new BooksPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(),offset,limit).getContent());
     }
+    @ModelAttribute("textTag")
+    public List<TagsDto> textTag(){ return tagService.getAllTags(); }
 
+    @GetMapping(value = {"/tags","/tags/{nameTag}"})
+    public String tagsPage(Model model){
+        Logger.getLogger(TagsPageController.class.getSimpleName()).info("tags page start work");
+        model.addAttribute("textTag",textTag());
+        return "/tags/index";
+    }
 
     @GetMapping("/postponed")
     public String postponedPage(){

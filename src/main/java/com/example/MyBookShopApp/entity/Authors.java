@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.persistence.Column;
@@ -27,7 +28,7 @@ import java.util.List;
 @Setter
 @Table(name = "authors")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@ToString
+//@ToString
 @NoArgsConstructor
 @Entity
 public class Authors {
@@ -46,4 +47,13 @@ public class Authors {
     String photo;
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     String slug;
+
+    @OneToMany(mappedBy = "author")
+    @JsonIgnore
+    private List<Book> bookList = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

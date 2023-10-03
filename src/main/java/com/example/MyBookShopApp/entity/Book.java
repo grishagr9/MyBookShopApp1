@@ -56,14 +56,24 @@ public class Book {
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     private String title;
 
-    @Column(name = "author_id")
-    private Integer author;
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private Authors author;
 
     private Integer count_of_buyers;
 
     private Integer count_of_cart;
 
     private Integer count_of_delay;
+
+    public Long getRoundDiscount(){
+     return Math.round(discount);
+    }
+
+    public Long getNewPrice(){
+        return Math.round(price * (1 - discount/100));
+    }
+
     @Override
     public String toString() {
         return "Book{" +

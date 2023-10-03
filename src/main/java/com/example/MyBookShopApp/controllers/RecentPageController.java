@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 @Controller
 @RequiredArgsConstructor
@@ -49,7 +50,7 @@ public class RecentPageController {
 
     @GetMapping("/recent") //todo как один из вариантов закрыться от NPE
     public String recentPage(@RequestParam(value = "fromDate", required = false) DateRecentDto fromDate,
-                             @PathVariable(value = "toDate", required = false) DateRecentDto toDate,
+                             @RequestParam(value = "toDate", required = false) DateRecentDto toDate,
                              Model model) {
         model.addAttribute("fromDate", Objects.requireNonNullElseGet(fromDate, () -> new DateRecentDto(new Date())));
         model.addAttribute("toDate", Objects.requireNonNullElseGet(toDate, () -> new DateRecentDto(new Date())));
@@ -59,6 +60,11 @@ public class RecentPageController {
                     bookService.getPageOfRecentBooksResult(0, 5, fromDate.getDate(), toDate.getDate()).getContent());
         } else {
             model.addAttribute("recentBooks", new ArrayList<>());
+        }
+
+        if(fromDate != null) {
+            Logger.getLogger(RecentPageController.class.getSimpleName()).info("From date = " +
+                    fromDate.getDate() + "/nTo Date = " + toDate.getDate());
         }
 
         return "/books/recent";

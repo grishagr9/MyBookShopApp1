@@ -32,8 +32,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     public Page<Book> findBooksByTitleContaining(String bookTitle, Pageable nextPage);
 
-    Page<Book> findAllByOrderByPubDateDesc(Pageable pageable);
-
     Page<Book> findAllByPubDateBetween(Date from, Date to, Pageable nextPage);
 
     @Query(value = "SELECT * FROM books WHERE CAST(pub_date AS date) BETWEEN CAST(:fromDate AS date) AND CAST(:toDate AS date)",

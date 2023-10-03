@@ -70,8 +70,8 @@ public class BookService {
     public Page<Book> getPageOfRecentBooksResult(Integer offset, Integer limit, Date fromDate, Date toDate) {
         Pageable nextPage = PageRequest.of(offset, limit);
         //return bookRepository.findAllByOrderByPubDateDesc(nextPage);
-        //return bookRepository.findAllByPubDateBetweenAndOrderByPubDateDesc(fromDate, toDate, nextPage);
-        return bookRepository.findAllByPubDateBetween(fromDate, toDate, nextPage);
+        return bookRepository.findAllByPubDateBetweenAndOrderByPubDateDesc(fromDate, toDate, nextPage);
+        //return bookRepository.findAllByPubDateBetween(fromDate, toDate, nextPage);
     }
 
 }

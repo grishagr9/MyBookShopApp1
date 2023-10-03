@@ -65,7 +65,7 @@
                 <div class="Slider-content">
                   <div class="Card"><a class="Card-picture" href="/books/slug.html"><img
                           th:src="${book.image}"  alt="card.jpg"/>
-                    <div class="Card-sale" th:text="${book.discount}+'% скидка'">30% скидка
+                    <div class="Card-sale" th:text="${book.getRoundDiscount()}+'% скидка'">30% скидка
                     </div>
                     <div class="Card-ribbon"><span class="Card-ribbonText" th:if="${book.isBestseller}">Бестселлер</span>
                     </div></a>
@@ -74,7 +74,7 @@
                       </strong>
                       <div class="Card-description" th:text="${book.author}">Автор
                       </div>
-                      <div class="Card-cost"><span class="Card-priceOld" th:text="₽ + ${book.price}">₽500.00</span><span class="Card-price" th:text="₽ + ${book.price * (1 -  book.discount/100)}">₽390.00</span>
+                      <div class="Card-cost"><span class="Card-priceOld" th:text="₽ + ${book.price}">₽500.00</span><span class="Card-price" th:text="₽ + ${book.getNewPrice()}">₽390.00</span>
                       </div>
                     </div>
                   </div>
@@ -96,7 +96,7 @@
                 <div class="Slider-content">
                   <div class="Card"><a class="Card-picture" href="/books/slug.html"><img
                           th:src="${book.image}"  alt="card.jpg"/>
-                    <div class="Card-sale" th:text="${book.discount}+'% скидка'">30% скидка
+                    <div class="Card-sale" th:text="${book.getRoundDiscount()}+'% скидка'">30% скидка
                     </div>
                     <div class="Card-ribbon"><span class="Card-ribbonText" th:if="${book.isBestseller}">Бестселлер</span>
                     </div></a>
@@ -105,7 +105,7 @@
                       </strong>
                       <div class="Card-description" th:text="${book.author}">Автор
                       </div>
-                      <div class="Card-cost"><span class="Card-priceOld" th:text="₽ + ${book.price}">₽500.00</span><span class="Card-price" th:text="₽ + ${book.price * (1 -  book.discount/100)}">₽390.00</span>
+                      <div class="Card-cost"><span class="Card-priceOld" th:text="₽ + ${book.price}">₽500.00</span><span class="Card-price" th:text="₽ + ${book.getNewPrice()}">₽390.00</span>
                       </div>
                     </div>
                   </div>
@@ -127,7 +127,7 @@
                 <div class="Slider-content">
                   <div class="Card"><a class="Card-picture" href="/books/slug.html"><img
                           th:src="${book.image}"  alt="card.jpg"/>
-                    <div class="Card-sale" th:text="${book.discount}+'% скидка'">30% скидка
+                    <div class="Card-sale" th:text="${book.getRoundDiscount()}+'% скидка'">30% скидка
                     </div>
                     <div class="Card-ribbon"><span class="Card-ribbonText" th:if="${book.isBestseller}">Бестселлер</span>
                     </div></a>
@@ -136,7 +136,7 @@
                       </strong>
                       <div class="Card-description" th:text="${book.author}">Автор
                       </div>
-                      <div class="Card-cost"><span class="Card-priceOld" th:text="₽ + ${book.price}">₽500.00</span><span class="Card-price" th:text="₽ + ${book.price * (1 -  book.discount/100)}">₽390.00</span>
+                      <div class="Card-cost"><span class="Card-priceOld" th:text="₽ + ${book.price}">₽500.00</span><span class="Card-price" th:text="₽ + ${book.getNewPrice()}">₽390.00</span>
                       </div>
                     </div>
                   </div>
@@ -151,7 +151,7 @@
         <h2 class="Middle-title">Книги по тегам
         </h2>
         <div class="Tags" id="tags">
-          <div class="Tag Tag_xs"><a href="/tags/index.html">современная литература</a>
+          <div class="Tag Tag_xs"><a th:text="${textTag}" th:href="@{/tags/} + ${textTag}">современная литература</a>
           </div>
           <div class="Tag Tag_sm"><a href="/tags/index.html">классическая литература</a>
           </div>
@@ -171,7 +171,7 @@
           </div>
           <div class="Tag"><a href="/tags/index.html">детектив</a>
           </div>
-          <div class="Tag Tag_sm"><a href="/tags/index.html">любовь</a>
+          <div class="Tag Tag_sm" th:class="Tag_lg"><a href="/tags/index.html">любовь</a>
           </div>
           <div class="Tag Tag_sm"><a href="/tags/index.html">мистика</a>
           </div>
