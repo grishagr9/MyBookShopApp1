@@ -17,5 +17,4 @@ public class TagService {
     public List<TagsDto> getAllTags() {
         return tagsRepository.findAll();
     }
-
 }
