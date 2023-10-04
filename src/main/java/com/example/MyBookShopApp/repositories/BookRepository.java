@@ -26,6 +26,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findBooksByPriceIs(Integer price);
 
+    Book findBookById(Integer id);
+
     @Query("from Book where isBestseller=1")
     List<Book> getBestsellers();
 

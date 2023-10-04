@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TagsRepository extends JpaRepository<TagsEntity, Integer> {
 
+    TagsEntity getTagsEntitiesByName(String name);
 }

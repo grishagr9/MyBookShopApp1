@@ -16,5 +16,4 @@ public class TagsPageController {
         return new SearchWordDto();
     }
 
-
 }

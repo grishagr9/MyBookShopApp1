@@ -45,6 +45,9 @@ public class MainPageController {
         return new ArrayList<>();
     }
 
+    @ModelAttribute("booksTagResult")
+    public List<Book> booksTagResult(){return new ArrayList<>(); }
+
     @GetMapping("/")
     public String mainPage(Model model){
         Logger.getLogger(MainPageController.class.getName()).info("main Page class start work");
@@ -88,11 +91,18 @@ public class MainPageController {
     @ModelAttribute("textTag")
     public List<TagsDto> textTag(){ return tagService.getAllTags(); }
 
-    @GetMapping(value = {"/tags","/tags/{nameTag}"})
+    @GetMapping(value = "/tags")
     public String tagsPage(Model model){
         Logger.getLogger(TagsPageController.class.getSimpleName()).info("tags page start work");
         model.addAttribute("textTag",textTag());
         return "/tags/index";
+    }
+
+    @GetMapping(value ="/tags/{nameTag}")
+    public String getTagsPage(@PathVariable(value = "nameTag",required = false)String nameTag, Model model){
+        Logger.getLogger(TagsPageController.class.getSimpleName()).info("tags page start work   ");
+        model.addAttribute("booksTagResult", tagService.getBooksFromTag(nameTag));
+        return "tags/index";
     }
 
     @GetMapping("/postponed")
