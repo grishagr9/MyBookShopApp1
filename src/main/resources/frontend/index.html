@@ -150,9 +150,9 @@
         </div>
         <h2 class="Middle-title">Книги по тегам
         </h2>
-        <div class="Tags" id="tags">
-          <div class="Tag Tag_xs"><a th:text="${textTag}" th:href="@{/tags/} + ${textTag}">современная литература</a>
-          </div>
+        <div class="Tags" id="tags" th:each="tag : ${textTag}">
+          <div class="Tag Tag_xs"><a th:text="${tag.name}" th:href="@{/tags/} + ${tag.name}">современная литература</a>
+          </div><!--
           <div class="Tag Tag_sm"><a href="/tags/index.html">классическая литература</a>
           </div>
           <div class="Tag"><a href="/tags/index.html">зарубежная литература</a>
@@ -248,7 +248,7 @@
           <div class="Tag"><a href="/tags/index.html">биография</a>
           </div>
           <div class="Tag"><a href="/tags/index.html">english</a>
-          </div>
+          </div>-->
         </div>
       </main>
     </div>
