@@ -2,18 +2,22 @@ package com.example.MyBookShopApp.services;
 
 import com.example.MyBookShopApp.dto.TagsDto;
 import com.example.MyBookShopApp.entity.TagsEntity;
+import com.example.MyBookShopApp.repositories.Book2TagRepository;
 import com.example.MyBookShopApp.repositories.TagsRepository;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
 public class TagService {
 
     private final TagsRepository tagsRepository;
+    private final Book2TagRepository book2TagRepository;
 
     public List<TagsDto> getAllTags() {
         final List<TagsEntity> tagsEntity = tagsRepository.findAll();
@@ -34,6 +38,25 @@ public class TagService {
         TagsDto tagsDto = new TagsDto();
         tagsDto.setName(tagsEntity.getName());
         tagsDto.setCountBooks(tagsEntity.getId());
+        Integer countBooks = book2TagRepository.countBook2TagEntitiesByTagId(tagsEntity.getId());
+        tagsDto.setCountBooks(countBooks);
+        tagsDto.setTagClass(getClassOfTag(countBooks));
+
+        Logger.getLogger(TagService.class.getSimpleName()).info(
+                "name: " + tagsEntity.getName() + " count: " + countBooks.toString());
         return tagsDto;
+    }
+
+    private String getClassOfTag(Integer count){
+        if(count <= 40){
+            return "Tag_xs";
+        }
+        if(count <= 46){
+            return "Tag_sm";
+        }
+        if(count <= 54){
+            return "Tag_md";
+        }
+        return "Tag_lg";
     }
 }
