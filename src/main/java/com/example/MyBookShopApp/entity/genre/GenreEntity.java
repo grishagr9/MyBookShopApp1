@@ -30,8 +30,9 @@ public class GenreEntity {
     @Column(columnDefinition = "INT")
     int parentId;
 
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    String slug;
+    /*@Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    String slug;*/
+
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     String name;

@@ -57,13 +57,11 @@ public class TagService {
         if(tagsEntity!=null) {
             TagsDto tagsDto = new TagsDto();
             tagsDto.setName(tagsEntity.getName());
-            tagsDto.setCountBooks(tagsEntity.getId());
             Integer countBooks = book2TagRepository.countBook2TagEntitiesByTagId(tagsEntity.getId());
             tagsDto.setCountBooks(countBooks);
             tagsDto.setTagClass(getClassOfTag(countBooks));
 
-            Logger.getLogger(TagService.class.getSimpleName()).info(
-                    "name: " + tagsEntity.getName() + " count: " + countBooks.toString());
+            //Logger.getLogger(TagService.class.getSimpleName()).info("name: " + tagsEntity.getName() + " count: " + countBooks.toString());
             return tagsDto;
         }
         return new TagsDto();
