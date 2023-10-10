@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.repositories;
 
+import com.example.MyBookShopApp.entity.Authors;
 import com.example.MyBookShopApp.entity.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> customFindAllBooks();
 
     //New book rest repository commands
+
+    public List<Book> findBooksByAuthor(Authors authors);
 
     List<Book> findBooksByTitleContaining(String bookTitle);
 

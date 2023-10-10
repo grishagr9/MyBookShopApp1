@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface AuthorRepository extends JpaRepository<Authors, Integer> {
 
 
+    public Authors findByName(String name);
 }
