@@ -4,6 +4,7 @@ import com.example.MyBookShopApp.dto.TagsDto;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.entity.TagsEntity;
 import com.example.MyBookShopApp.entity.book.links.Book2TagEntity;
+import com.example.MyBookShopApp.mappers.TagsMapper;
 import com.example.MyBookShopApp.repositories.Book2TagRepository;
 import com.example.MyBookShopApp.repositories.BookRepository;
 import com.example.MyBookShopApp.repositories.TagsRepository;
@@ -48,7 +49,8 @@ public class TagService {
     List<TagsDto> toDtoList(List<TagsEntity> tagsEntity) {
         final List<TagsDto> tagsDto = new ArrayList<>(tagsEntity.size());
         for (TagsEntity tags : tagsEntity) {
-            tagsDto.add(toDto(tags));
+            Integer countBooks = book2TagRepository.countBook2TagEntitiesByTagId(tags.getId());
+            tagsDto.add(TagsMapper.INSTANCE.toDTO(tags, countBooks));
         }
         return tagsDto;
     }
@@ -61,12 +63,11 @@ public class TagService {
             tagsDto.setCountBooks(countBooks);
             tagsDto.setTagClass(getClassOfTag(countBooks));
 
-            //Logger.getLogger(TagService.class.getSimpleName()).info("name: " + tagsEntity.getName() + " count: " + countBooks.toString());
+            // Logger.getLogger(TagService.class.getSimpleName()).info("name: " + tagsEntity.getName() + " count: " + countBooks.toString());
             return tagsDto;
         }
         return new TagsDto();
     }
-
     private String getClassOfTag(Integer count){
         if(count <= 40){
             return "Tag_xs";
@@ -79,6 +80,5 @@ public class TagService {
         }
         return "Tag_lg";
     }
-
 
 }

@@ -6,6 +6,7 @@ import com.example.MyBookShopApp.services.AuthorService;
 import com.example.MyBookShopApp.entity.Authors;
 
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

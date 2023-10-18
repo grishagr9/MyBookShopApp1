@@ -1,6 +1,10 @@
 package com.example.MyBookShopApp.services;
 
+import com.example.MyBookShopApp.dto.AuthorDto;
+import com.example.MyBookShopApp.dto.TagsDto;
 import com.example.MyBookShopApp.entity.Book;
+import com.example.MyBookShopApp.entity.TagsEntity;
+import com.example.MyBookShopApp.mappers.AuthorMapper;
 import com.example.MyBookShopApp.repositories.AuthorRepository;
 import com.example.MyBookShopApp.entity.Authors;
 import com.example.MyBookShopApp.repositories.BookRepository;
@@ -9,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,4 +38,14 @@ public class AuthorService {
         Authors author = getAuthorByName(nameAuthor);
         return bookRepository.findBooksByAuthor(author);
     }
+//    List<AuthorDto> toDtoList(List<Authors> authorsEntity) {
+//        final List<AuthorDto> tagsDto = new ArrayList<>(authorsEntity.size());
+//        for (Authors author : authorsEntity) {
+//            tagsDto.add(AuthorMapper.INSTANCE.toDTO(author));
+//        }
+//        return tagsDto;
+//    }
+//    public AuthorDto toDTO(Authors author){
+//        return new AuthorDto();
+//    }
 }
