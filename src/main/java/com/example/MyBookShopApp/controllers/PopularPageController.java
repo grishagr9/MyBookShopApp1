@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.dto.BookDto;
 import com.example.MyBookShopApp.dto.SearchWordDto;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.services.BookService;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 public class PopularPageController {
 
     private final BooksRatingAndPopulatityService booksRatingService;
+    private final BookService bookService;
 
     @ModelAttribute("searchWordDto")
     public SearchWordDto searchWordDto(){
@@ -25,12 +27,12 @@ public class PopularPageController {
     }
 
     @ModelAttribute("searchResults")
-    public List<Book> searchResults(){
+    public List<BookDto> searchResults(){
         return new ArrayList<>();
     }
 
     @ModelAttribute("popularBooks")
-    public List<Book> popularBooks(){ return booksRatingService.getBookByPopularity(0,20); }
+    public List<BookDto> popularBooks(){ return bookService.toDtos(booksRatingService.getBookByPopularity(0,20)); }
 
     @GetMapping("/popular")
     public String popularPage(){

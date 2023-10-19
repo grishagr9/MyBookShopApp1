@@ -1,9 +1,11 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.dto.BookDto;
 import com.example.MyBookShopApp.dto.GenresDto;
 import com.example.MyBookShopApp.dto.SearchWordDto;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.entity.genre.GenreEntity;
+import com.example.MyBookShopApp.services.BookService;
 import com.example.MyBookShopApp.services.GenreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import java.util.logging.Logger;
 public class GenresPageController {
 
     final private GenreService genreService;
+    final private BookService bookService;
     @ModelAttribute("searchWordDto")
     public SearchWordDto searchWordDto(){
         return new SearchWordDto();
@@ -33,10 +36,10 @@ public class GenresPageController {
     }
 
     @ModelAttribute("bookGenreResult")
-    public List<Book> bookGenreResult(){ return new ArrayList<>(); }
+    public List<BookDto> bookGenreResult(){ return new ArrayList<>(); }
 
     @ModelAttribute("searchResults")
-    public List<Book> searchResults(){
+    public List<BookDto> searchResults(){
         return new ArrayList<>();
     }
 
@@ -49,7 +52,7 @@ public class GenresPageController {
     @GetMapping(value ="/genres/{nameGenre}")
     public String getGenrePage(@PathVariable(value = "nameGenre",required = false)String nameGenre, Model model){
         GenreEntity genre = genreService.getGenreByName(nameGenre);
-        model.addAttribute("bookGenreResult", genreService.getAllBookByName(nameGenre));
+        model.addAttribute("bookGenreResult", bookService.toDtos(genreService.getAllBookByName(nameGenre)));
         model.addAttribute("currentGenre",genre);
         if(genre!=null && genre.getParentId() != 0){
            model.addAttribute("parentGenre", genreService.getParentGenre(genre));

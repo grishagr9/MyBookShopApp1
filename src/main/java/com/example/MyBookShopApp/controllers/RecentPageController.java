@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.dto.BookDto;
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.dto.DateRecentDto;
 import com.example.MyBookShopApp.dto.SearchWordDto;
@@ -29,12 +30,12 @@ public class RecentPageController {
     }
 
     @ModelAttribute("searchResults")
-    public List<Book> searchResults() {
+    public List<BookDto> searchResults() {
         return new ArrayList<>();
     }
 
     @ModelAttribute("recentBooks")
-    public List<Book> recentBooks() {
+    public List<BookDto> recentBooks() {
         return new ArrayList<>();
     }
 
@@ -57,7 +58,7 @@ public class RecentPageController {
 
         if (fromDate != null ) {
             model.addAttribute("recentBooks",
-                    bookService.getPageOfRecentBooksResult(0, 5, fromDate.getDate(), toDate.getDate()).getContent());
+                    bookService.toDtos( bookService.getPageOfRecentBooksResult(0, 5, fromDate.getDate(), toDate.getDate()).getContent()));
         } else {
             model.addAttribute("recentBooks", new ArrayList<>());
         }

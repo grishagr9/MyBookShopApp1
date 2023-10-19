@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.services;
 
 import com.example.MyBookShopApp.dto.AuthorDto;
+import com.example.MyBookShopApp.dto.BookDto;
 import com.example.MyBookShopApp.dto.TagsDto;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.entity.TagsEntity;
@@ -24,6 +25,7 @@ public class AuthorService {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final BookService bookService;
 
     public Authors getAuthorByName(String name){
         return authorRepository.findByName(name);
@@ -34,9 +36,9 @@ public class AuthorService {
         return authors.stream().collect(Collectors.groupingBy((Authors a) -> a.getName().substring(0, 1)));
     }
 
-    public List<Book> getBookByAuthor(String nameAuthor) {
+    public List<BookDto> getBookByAuthor(String nameAuthor) {
         Authors author = getAuthorByName(nameAuthor);
-        return bookRepository.findBooksByAuthor(author);
+        return bookService.toDtos(bookRepository.findBooksByAuthor(author));
     }
 //    List<AuthorDto> toDtoList(List<Authors> authorsEntity) {
 //        final List<AuthorDto> tagsDto = new ArrayList<>(authorsEntity.size());

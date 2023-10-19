@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.dto.BookDto;
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.dto.SearchWordDto;
 import com.example.MyBookShopApp.dto.TagsDto;
@@ -25,15 +26,16 @@ public class MainPageController {
     private final TagService tagService;
 
     @ModelAttribute("recommendedBooks")
-    public List<Book> recommendedBooks(){
-        return bookService.getPageOfRecommendedBooks(0,6).getContent();
+    public List<BookDto> recommendedBooks(){
+        List<Book> res = bookService.getPageOfRecommendedBooks(0,6).getContent();
+        return bookService.toDtos(res);
     }
 
     @ModelAttribute("popularBooks")
-    public List<Book> popularBooks(){ return bookService.getPageOfPopularBooks(0,6).getContent(); }
+    public List<BookDto> popularBooks(){ return bookService.toDtos(bookService.getPageOfPopularBooks(0,6).getContent()); }
 
     @ModelAttribute("newBooks")
-    public List<Book> newBooks(){ return bookService.getPageOfNewsBooks(0,6).getContent(); }
+    public List<BookDto> newBooks(){ return bookService.toDtos(bookService.getPageOfNewsBooks(0,6).getContent()); }
 
     @ModelAttribute("searchWordDto")
     public SearchWordDto searchWordDto(){
@@ -41,12 +43,12 @@ public class MainPageController {
     }
 
     @ModelAttribute("searchResults")
-    public List<Book> searchResults(){
+    public List<BookDto> searchResults(){
         return new ArrayList<>();
     }
 
     @ModelAttribute("booksTagResult")
-    public List<Book> booksTagResult(){return new ArrayList<>(); }
+    public List<BookDto> booksTagResult(){return new ArrayList<>(); }
 
     @GetMapping("/")
     public String mainPage(Model model){
@@ -57,19 +59,19 @@ public class MainPageController {
     @GetMapping("/books/recommended")
     @ResponseBody
     public BooksPageDto getBooksPage(@RequestParam("offset")Integer offset,@RequestParam("limit")Integer limit){
-        return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset,limit).getContent());
+        return new BooksPageDto(bookService.toDtos(bookService.getPageOfRecommendedBooks(offset,limit).getContent()));
     }
 
     @GetMapping("/books/recent")
     @ResponseBody
     public BooksPageDto getBooksPageNews(@RequestParam("offset")Integer offset,@RequestParam("limit")Integer limit){
-        return new BooksPageDto(bookService.getPageOfNewsBooks(offset, limit).getContent());
+        return new BooksPageDto(bookService.toDtos(bookService.getPageOfNewsBooks(offset, limit).getContent()));
     }
 
     @GetMapping("/books/popular")
     @ResponseBody
     public BooksPageDto getBooksPagePopular(@RequestParam("offset")Integer offset,@RequestParam("limit")Integer limit){
-        return new BooksPageDto(bookService.getPageOfPopularBooks(offset,limit).getContent());
+        return new BooksPageDto(bookService.toDtos(bookService.getPageOfPopularBooks(offset,limit).getContent()));
     }
 
     @GetMapping(value = {"/search/", "/search/{searchWord}"})
@@ -86,7 +88,7 @@ public class MainPageController {
     public BooksPageDto getNextSearchPage(@RequestParam("offset")Integer offset,
                                           @RequestParam("limit")Integer limit,
                                           @PathVariable(value = "searchWord",required = false) SearchWordDto searchWordDto){
-        return new BooksPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(),offset,limit).getContent());
+        return new BooksPageDto(bookService.toDtos(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(),offset,limit).getContent()));
     }
     @ModelAttribute("textTag")
     public List<TagsDto> textTag(){ return tagService.getAllTags(); }

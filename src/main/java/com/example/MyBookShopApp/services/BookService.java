@@ -1,5 +1,7 @@
 package com.example.MyBookShopApp.services;
 
+import com.example.MyBookShopApp.dto.BookDto;
+import com.example.MyBookShopApp.mappers.BookMapper;
 import com.example.MyBookShopApp.repositories.BookRepository;
 import com.example.MyBookShopApp.entity.Book;
 import io.swagger.v3.core.util.AnnotationsUtils;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,26 +30,27 @@ public class BookService {
 
     //new book service methods
 
-    public List<Book> getBooksByTitle(String title) {
-        return bookRepository.findBooksByTitleContaining(title);
+    public List<BookDto> getBooksByTitle(String title) {
+        return toDtos(bookRepository.findBooksByTitleContaining(title));
     }
 
-    public List<Book> getBooksWithPriceBetween(Integer min, Integer max) {
-        return bookRepository.findBooksByPriceBetween(min, max);
+    public List<BookDto> getBooksWithPriceBetween(Integer min, Integer max) {
+        return toDtos(bookRepository.findBooksByPriceBetween(min, max));
     }
 
-    public List<Book> getBooksWithPrice(Integer price) {
-        return bookRepository.findBooksByPriceIs(price);
+    public List<BookDto> getBooksWithPrice(Integer price) {
+        return toDtos(bookRepository.findBooksByPriceIs(price));
     }
 
-    public List<Book> getBooksWithMaxDiscount() {
-        return bookRepository.getBooksWithMaxDiscount();
+    public List<BookDto> getBooksWithMaxDiscount() {
+        return toDtos(bookRepository.getBooksWithMaxDiscount());
     }
 
-    public List<Book> getBestSellers() {
-        return bookRepository.getBestsellers();
+    public List<BookDto> getBestSellers() {
+        return toDtos(bookRepository.getBestsellers());
     }
 
+    //todo
     public Page<Book> getPageOfRecommendedBooks(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
         return bookRepository.findAll(nextPage);
@@ -74,4 +78,11 @@ public class BookService {
         //return bookRepository.findAllByPubDateBetween(fromDate, toDate, nextPage);
     }
 
+    public List<BookDto> toDtos(List<Book> list){
+        List<BookDto> res = new ArrayList<>();
+        for (Book book: list) {
+            res.add(BookMapper.INSTANCE.toDTO(book));
+        }
+        return res;
+    }
 }

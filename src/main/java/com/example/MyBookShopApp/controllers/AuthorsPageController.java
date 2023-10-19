@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.dto.BookDto;
 import com.example.MyBookShopApp.dto.SearchWordDto;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.services.AuthorService;
@@ -32,7 +33,7 @@ public class AuthorsPageController {
     }
 
     @ModelAttribute("searchResults")
-    public List<Book> searchResults(){
+    public List<BookDto> searchResults(){
         return new ArrayList<>();
     }
 
