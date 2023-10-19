@@ -5,7 +5,7 @@ import com.example.MyBookShopApp.entity.Authors;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AuthorMapper {
 
     AuthorMapper INSTANCE = Mappers.getMapper(AuthorMapper.class);

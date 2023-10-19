@@ -74,18 +74,4 @@ public class Book {
         return Math.round(price * (1 - discount/100));
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", text='" + description + '\'' +
-                ", discount=" + discount +
-                ", image='" + image + '\'' +
-                ", isBestseller=" + isBestseller +
-                ", price=" + price +
-                ", pubDate=" + pubDate +
-                ", slug='" + slug + '\'' +
-                ", title='" + title + '\'' +
-                '}';
-    }
 }
