@@ -49,8 +49,8 @@ public class TagService {
     List<TagsDto> toDtoList(List<TagsEntity> tagsEntity) {
         final List<TagsDto> tagsDto = new ArrayList<>(tagsEntity.size());
         for (TagsEntity tags : tagsEntity) {
-            Integer countBooks = book2TagRepository.countBook2TagEntitiesByTagId(tags.getId());
-            tagsDto.add(TagsMapper.INSTANCE.toDTO(tags, countBooks));
+            //Integer countBooks = book2TagRepository.countBook2TagEntitiesByTagId(tags.getId());
+            tagsDto.add(toDto(tags));
         }
         return tagsDto;
     }

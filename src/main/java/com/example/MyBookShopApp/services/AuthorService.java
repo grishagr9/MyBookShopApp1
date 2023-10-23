@@ -40,14 +40,14 @@ public class AuthorService {
         Authors author = getAuthorByName(nameAuthor);
         return bookService.toDtos(bookRepository.findBooksByAuthor(author));
     }
-//    List<AuthorDto> toDtoList(List<Authors> authorsEntity) {
-//        final List<AuthorDto> tagsDto = new ArrayList<>(authorsEntity.size());
-//        for (Authors author : authorsEntity) {
-//            tagsDto.add(AuthorMapper.INSTANCE.toDTO(author));
-//        }
-//        return tagsDto;
-//    }
-//    public AuthorDto toDTO(Authors author){
-//        return new AuthorDto();
-//    }
+    List<AuthorDto> toDtoList(List<Authors> authorsEntity) {
+        final List<AuthorDto> tagsDto = new ArrayList<>(authorsEntity.size());
+        for (Authors author : authorsEntity) {
+            tagsDto.add(toDTO(author));
+        }
+        return tagsDto;
+    }
+    public AuthorDto toDTO(Authors author){
+        return new AuthorDto();
+    }
 }

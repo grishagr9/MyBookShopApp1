@@ -81,8 +81,26 @@ public class BookService {
     public List<BookDto> toDtos(List<Book> list){
         List<BookDto> res = new ArrayList<>();
         for (Book book: list) {
-            res.add(BookMapper.INSTANCE.toDTO(book));
+            res.add(toDTO(book));
         }
         return res;
+    }
+
+    private BookDto toDTO(Book book) {
+        BookDto bookDto = new BookDto();
+        bookDto.setImage(book.getImage());
+        bookDto.setAuthor(book.getAuthor());
+        bookDto.setDiscount(book.getDiscount());
+        bookDto.setSlug(book.getSlug());
+        bookDto.setPrice(book.getPrice());
+        bookDto.setCount_of_buyers(book.getCount_of_buyers());
+        bookDto.setCount_of_cart(book.getCount_of_cart());
+        bookDto.setCount_of_delay(book.getCount_of_delay());
+        bookDto.setDescription(book.getDescription());
+        bookDto.setIsBestseller(book.getIsBestseller());
+        bookDto.setPubDate(book.getPubDate());
+        bookDto.setTitle(book.getTitle());
+
+        return bookDto;
     }
 }
