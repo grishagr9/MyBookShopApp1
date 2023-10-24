@@ -46,4 +46,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     Page<Book> findAllByPubDateBetweenAndOrderByPubDateDesc(@Param("fromDate") Date fromDate,
                                                             @Param("toDate") Date toDate,
                                                             Pageable nextPage);
+
+    Book findBooksBySlug(String slug);
 }
