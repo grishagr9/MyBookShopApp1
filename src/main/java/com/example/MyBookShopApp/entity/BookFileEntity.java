@@ -1,5 +1,7 @@
 package com.example.MyBookShopApp.entity;
 
+import com.example.MyBookShopApp.data.BookFileType;
+import com.example.MyBookShopApp.entity.book.file.BookFileTypeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -27,4 +29,12 @@ public class BookFileEntity {
     String path;
     @Column(columnDefinition = "INT NOT NULL")
     Integer typeId;
+
+    public String getBookFileExtensionString(){
+        return BookFileType.getExtensionStringByTypeId(typeId);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    private Book book;
 }

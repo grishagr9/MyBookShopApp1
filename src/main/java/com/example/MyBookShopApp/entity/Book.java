@@ -9,7 +9,9 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -59,6 +61,9 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Authors author;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookFileEntity> bookFileEntityList = new ArrayList<>();
 
     private Integer count_of_buyers;
 
