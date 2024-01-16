@@ -4,6 +4,8 @@ import com.example.MyBookShopApp.data.ResourceStorage;
 import com.example.MyBookShopApp.dto.SearchWordDto;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.repositories.BookRepository;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.channels.MulticastChannel;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 @Controller
@@ -67,5 +71,22 @@ public class BooksController {
                 .contentType(mediaType)
                 .contentLength(data.length)
                 .body(new ByteArrayResource(data));
+    }
+
+    @PostMapping("/changeBookStatus/cart/remove/{slug}")
+    public String handleRemoveBookFromCartRequest(@PathVariable("slug") String slug, @CookieValue(name = "cartContents",
+                required = false)String cartContents, HttpServletResponse response, Model model){
+        if(cartContents != null && cartContents.equals("")){
+            ArrayList<String> cookieBooks = new ArrayList<>(Arrays.asList(cartContents.split("/")));
+            cookieBooks.remove(slug);
+            Cookie cookie = new Cookie("cartContents", String.join("/",cookieBooks));
+            cookie.setPath("/books");
+            response.addCookie(cookie);
+            model.addAttribute("isEmpty",false);
+        }else{
+            model.addAttribute("isEmpty",true);
+        }
+
+        return "redirect:/books/cart";
     }
 }

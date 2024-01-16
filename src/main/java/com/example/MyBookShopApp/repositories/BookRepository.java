@@ -48,4 +48,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
                                                             Pageable nextPage);
 
     Book findBooksBySlug(String slug);
+
+    List<Book> findBooksBySlugIn(String[] slugs);
 }

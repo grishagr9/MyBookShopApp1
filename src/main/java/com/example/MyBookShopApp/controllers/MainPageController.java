@@ -5,6 +5,7 @@ import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.dto.SearchWordDto;
 import com.example.MyBookShopApp.dto.TagsDto;
 import com.example.MyBookShopApp.entity.Book;
+import com.example.MyBookShopApp.errs.EmptySearchException;
 import com.example.MyBookShopApp.services.BookService;
 import com.example.MyBookShopApp.services.TagService;
 import lombok.AllArgsConstructor;
@@ -76,11 +77,15 @@ public class MainPageController {
 
     @GetMapping(value = {"/search/", "/search/{searchWord}"})
     public String getSearchResult(@PathVariable(value = "searchWord",required = false) SearchWordDto searchWordDto,
-                                  Model model ){
-        model.addAttribute("searchWordDto",searchWordDto);
-        model.addAttribute("searchResults",bookService
-                .getPageOfSearchResultBooks(searchWordDto.getExample(),0,5).getContent());
-        return "/search/index";
+                                  Model model ) throws EmptySearchException {
+        if(searchWordDto != null) {
+            model.addAttribute("searchWordDto", searchWordDto);
+            model.addAttribute("searchResults", bookService
+                    .getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5).getContent());
+            return "/search/index";
+        }else{
+            throw new EmptySearchException("Поиск невозможен по null");
+        }
     }
 
     @GetMapping("/search/page/{searchWord}")
